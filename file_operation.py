@@ -7,7 +7,7 @@ root_path = "/usr"
 def find_path(root, paths):
     for root, dirs, files in os.walk(root):
         for dir in dirs:
-            math_result = re.match(r'python\d.\d', dir)
+            math_result = re.match(r'python\d.\d$', dir)
             if math_result == None:
                 continue
             paths.append(os.path.join(root, dir))
