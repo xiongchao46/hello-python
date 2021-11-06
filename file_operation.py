@@ -5,6 +5,7 @@ import re
 root_path = "/usr"
 
 def find_path(root, paths):
+    """ 正则匹配查找特定文件夹所在路径"""
     for root, dirs, files in os.walk(root):
         for dir in dirs:
             math_result = re.match(r'python\d.\d$', dir)
@@ -13,6 +14,8 @@ def find_path(root, paths):
             paths.append(os.path.join(root, dir))
 
 def search_file(root_path):
+    """递归查找指定目录下文件并且记录文件名
+    文件大小、文件路径"""
     paths = []
     find_path(root_path, paths)
     for path in paths:
@@ -32,6 +35,7 @@ def search_file(root_path):
 
 
 def display(folders, files_info):
+    """打印最长文件名的文件、最大存储的文件、文件夹下所有文件的占用存储空间大小"""
     print("Total folders : {}, Total files : {}".format(len(folders), len(files_info)))
     if len(files_info) > 0:
         longest_file = sorted(files_info, key=lambda x:len(x[0]), reverse=True)[0][0]
